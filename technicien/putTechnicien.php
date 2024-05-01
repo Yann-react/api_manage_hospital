@@ -3,8 +3,8 @@
     header("Access-Control-Allow-Origin: *");
     header('Access-Control-Allow-Headers: Content-Type');
     try{
-        $stmt = $conn->prepare("UPDATE technicien SET nomTechn = :nomTechn, prenomTechn = :prenomTechn, telephoneTechn = :telephoneTechn, emailTechn = :emailTechn, cni = :cni, cpteBanque = :cpteBanque, gradeTechn = :gradeTechn, specialiteTechn = :specialiteTechn WHERE id = :id");
-        $stmt->bindParam(':id', $id);
+        $stmt = $conn->prepare("UPDATE technicien SET nomTechn = :nomTechn, prenomTechn = :prenomTechn, telephoneTechn = :telephoneTechn, emailTechn = :emailTechn, cni = :cni, cpteBanque = :cpteBanque, gradeTechn = :gradeTechn, specialiteTechn = :specialiteTechn WHERE idTechnicien = :idTechnicien");
+        $stmt->bindParam(':idTechnicien', $idTechnicien);
         $stmt->bindParam(':nomTechn', $nomTechn);
         $stmt->bindParam(':prenomTechn', $prenomTechn);
         $stmt->bindParam(':telephoneTechn', $telephoneTechn);
@@ -13,7 +13,7 @@
         $stmt->bindParam(':cpteBanque', $cpteBanque);
         $stmt->bindParam(':gradeTechn', $gradeTechn);
         $stmt->bindParam(':specialiteTechn', $specialiteTechn);
-        $id = $_GET["id"];
+        $idTechnicien = $_GET["idTechnicien"];
         $nomTechn = $_GET["nomTechn"];
         $prenomTechn = $_GET["prenomTechn"];
         $telephoneTechn = $_GET["telephoneTechn"];

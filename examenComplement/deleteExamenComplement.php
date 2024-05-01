@@ -3,20 +3,20 @@
     header("Access-Control-Allow-Origin: *");
     header('Access-Control-Allow-Headers: Content-Type');
     try{
-        $stmt = $conn->prepare("DELETE FROM dossier_patient WHERE iddossier_patient = :iddossier_patient");
-        $stmt->bindParam(':iddossier_patient', $iddossier_patient);
-        $iddossier_patient= $_GET["iddossier_patient"];
+        $stmt = $conn->prepare("DELETE FROM examencomplement WHERE idExamenCompl = :idExamenCompl");
+        $stmt->bindParam(':idExamenCompl', $idExamenCompl);
+        $idExamenCompl = $_GET["idExamenCompl"];
         $stmt->execute();
         $result = array(
             "success" => true,
-            "message" => "Dossier patient supprimé avec succès"
+            "message" => "Examen supprimé avec succès"
         );
     }
     catch(PDOException $e){
         echo($e->getMessage());
         $result = array(
             "success" => false,
-            "message" => "Erreur lors de la suppression du dossier patient"
+            "message" => "Erreur lors de la suppression de l'examen"
         );
     }
     echo(json_encode($result));

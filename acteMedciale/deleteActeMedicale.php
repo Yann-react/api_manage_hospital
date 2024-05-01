@@ -3,9 +3,9 @@
     header("Access-Control-Allow-Origin: *");
     header('Access-Control-Allow-Headers: Content-Type');
     try{
-        $stmt = $conn->prepare("DELETE FROM actemedical WHERE id = :id");
-        $stmt->bindParam(':id', $id);
-        $id = $_GET["id"];
+        $stmt = $conn->prepare("DELETE FROM actemedical WHERE idActeMedi = :idActeMedi");
+        $stmt->bindParam(':idActeMedi', $idActeMedi);
+        $idActeMedi = $_GET["idActeMedi"];
         $stmt->execute();
         $result = array(
             "success" => true,

@@ -3,8 +3,8 @@
     header("Access-Control-Allow-Origin: *");
     header('Access-Control-Allow-Headers: Content-Type');
     try{
-        $stmt = $conn->prepare("UPDATE dossier_patient SET nompat = :nompat, prenompat = :prenompat, datenaisspat = :datenaisspat, lieunaisspat = :lieunaisspat, localisation = :localisation, telephonepat = :telephonepat, emailpat = :emailpat, professionpa = :professionpa, antecedents = :antecedents WHERE id = :id");
-        $stmt->bindParam(':id', $id);
+        $stmt = $conn->prepare("UPDATE dossier_patient SET nompat = :nompat, prenompat = :prenompat, datenaisspat = :datenaisspat, lieunaisspat = :lieunaisspat, localisation = :localisation, telephonepat = :telephonepat, emailpat = :emailpat, professionpa = :professionpa, antecedents = :antecedents WHERE iddossier_patient = :iddossier_patient");
+        $stmt->bindParam(':iddossier_patient', $iddossier_patient);
         $stmt->bindParam(':nompat', $nompat);
         $stmt->bindParam(':prenompat', $prenompat);
         $stmt->bindParam(':datenaisspat', $datenaisspat);
@@ -14,7 +14,7 @@
         $stmt->bindParam(':emailpat', $emailpat);
         $stmt->bindParam(':professionpa', $professionpa);
         $stmt->bindParam(':antecedents', $antecedents);
-        $id = $_GET["id"];
+        $iddossier_patient = $_GET["iddossier_patient"];
         $nompat = $_GET["nompat"];
         $prenompat = $_GET["prenompat"];
         $datenaisspat = $_GET["datenaisspat"];

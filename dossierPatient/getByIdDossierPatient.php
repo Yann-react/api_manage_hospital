@@ -3,9 +3,9 @@
     header("Access-Control-Allow-Origin: *");
     header('Access-Control-Allow-Headers: Content-Type');
     try{
-        $stmt = $conn->prepare("SELECT * FROM dossier_patient WHERE id = :id");
-        $stmt->bindParam(':id', $id);
-        $id = $_GET["id"];
+        $stmt = $conn->prepare("SELECT * FROM dossier_patient WHERE iddossier_patient = :iddossier_patient");
+        $stmt->bindParam(':iddossier_patient', $iddossier_patient);
+        $iddossier_patient = $_GET["iddossier_patient"];
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         if($result){

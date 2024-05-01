@@ -3,9 +3,9 @@
     header("Access-Control-Allow-Origin: *");
     header('Access-Control-Allow-Headers: Content-Type');
     try{
-        $stmt = $conn->prepare("SELECT * FROM lit WHERE id = :id");
-        $stmt->bindParam(':id', $id);
-        $id = $_GET["id"];
+        $stmt = $conn->prepare("SELECT * FROM lit WHERE numerolit = :numerolit");
+        $stmt->bindParam(':numerolit', $numerolit);
+        $numerolit = $_GET["numerolit"];
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         if($result){

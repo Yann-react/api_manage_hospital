@@ -3,9 +3,9 @@
     header("Access-Control-Allow-Origin: *");
     header('Access-Control-Allow-Headers: Content-Type');
     try{
-        $stmt = $conn->prepare("SELECT * FROM chambre WHERE numeroChambre = :numeroChambre");
-        $stmt->bindParam(':numeroChambre', $numeroChambre);
-        $numeroChambre = $_GET["numeroChambre"];
+        $stmt = $conn->prepare("SELECT * FROM resultatexamen WHERE idResultat = :idResultatd");
+        $stmt->bindParam(':idResultat', $idResultat);
+        $idResultat = $_GET["idResultat"];
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         if($result){
@@ -16,7 +16,7 @@
         } else {
             $result = array(
                 "success" => false,
-                "message" => "Aucune chambre trouvée avec cet id"
+                "message" => "Aucun résultat d'examen trouvé avec cet id"
             );
         }
     }

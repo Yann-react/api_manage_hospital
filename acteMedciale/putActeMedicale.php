@@ -3,10 +3,10 @@
     header("Access-Control-Allow-Origin: *");
     header('Access-Control-Allow-Headers: Content-Type');
     try{
-        $stmt = $conn->prepare("UPDATE actemedical SET libeActeMedi = :libeActeMedi WHERE id = :id");
-        $stmt->bindParam(':id', $id);
+        $stmt = $conn->prepare("UPDATE actemedical SET libeActeMedi = :libeActeMedi WHERE idActeMedi = :idActeMedi");
+        $stmt->bindParam(':idActeMedi', $idActeMedi);
         $stmt->bindParam(':libeActeMedi', $libeActeMedi);
-        $id = $_GET["id"];
+        $idActeMedi = $_GET["idActeMedi"];
         $libeActeMedi = $_GET["libeActeMedi"];
         $stmt->execute();
         $result = array(
