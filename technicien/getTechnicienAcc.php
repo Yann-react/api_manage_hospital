@@ -3,13 +3,14 @@
     header("Access-Control-Allow-Origin: *");
     header('Access-Control-Allow-Headers: Content-Type');
     try{
-        $stmt = $conn->prepare("SELECT h.*, l.numerochambre, p.nompat, p.prenompat FROM hospitalisation h JOIN lit l ON h.idLit = l.numerolit JOIN consultation c ON h.idConsultation = c.idconsultation JOIN dossier_patient p ON c.iddossier_patient = p.iddossier_patient");
+        $stmt = $conn->prepare("SELECT idTechnicien, nomTechn, prenomTechn FROM technicien WHERE specialiteTechn IN ('infirmier', 'sage-femme')");
         $stmt->execute();
-        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
         $result = array(
             "success" => true,
-            "data" => $results
+            "data" => $stmt->fetchAll(PDO::FETCH_ASSOC)
         );
+
     }
     catch(PDOException $e){
         echo($e->getMessage());
@@ -17,5 +18,6 @@
             "success" => false
         );
     }
+
     echo(json_encode($result));
 ?>

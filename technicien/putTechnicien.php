@@ -1,7 +1,9 @@
 <?php
     require_once "../conn.php";
-    header("Access-Control-Allow-Origin: *");
-    header('Access-Control-Allow-Headers: Content-Type');
+    header("Access-Control-Allow-Origin: http://localhost:3000");
+    header("Access-Control-Allow-Credentials: true");
+    header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+    header("Access-Control-Allow-Headers: Content-Type, Authorization");
     try{
         $stmt = $conn->prepare("UPDATE technicien SET nomTechn = :nomTechn, prenomTechn = :prenomTechn, telephoneTechn = :telephoneTechn, emailTechn = :emailTechn, cni = :cni, cpteBanque = :cpteBanque, gradeTechn = :gradeTechn, specialiteTechn = :specialiteTechn WHERE idTechnicien = :idTechnicien");
         $stmt->bindParam(':idTechnicien', $idTechnicien);
@@ -25,7 +27,7 @@
         $stmt->execute();
         $result = array(
             "success" => true,
-            "message" => "Technicien mis à jour avec succès"
+            "message" => "Technicien mis à <jo></jo>ur avec succès"
         );
     }
     catch(PDOException $e){

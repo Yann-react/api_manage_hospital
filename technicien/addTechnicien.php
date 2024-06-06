@@ -1,9 +1,12 @@
 <?php 
-    require_once "../conn.php";
-    header("Access-Control-Allow-Origin: *");
-    header('Access-Control-Allow-Headers: Content-Type');
+      require_once "../conn.php";
+      header("Access-Control-Allow-Origin: http://localhost:3000");
+    header("Access-Control-Allow-Credentials: true");
+    header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+    header("Access-Control-Allow-Headers: Content-Type, Authorization");
+    
     try{
-        $stmt = $conn->prepare("INSERT INTO  technicien (nomTechn,prenomTechn,telephoneTechn,emailTechn,cni,cpteBanque,gradeTechn,specialiteTechn) VALUES (:nomTechn,:prenomTechn,:telephoneTechn,:emailTechn,:cni,:cpteBanque,:gradeTechn,:specialiteTechn)");
+        $stmt = $conn->prepare("INSERT INTO  technicien (nomTechn,prenomTechn,telephoneTechn,emailTechn,cni,cpteBanque,gradeTechn,specialiteTechn ,password) VALUES (:nomTechn,:prenomTechn,:telephoneTechn,:emailTechn,:cni,:cpteBanque,:gradeTechn,:specialiteTechn,:password)");
         $stmt->bindParam(':nomTechn', $nomTechn);
         $stmt->bindParam(':prenomTechn', $prenomTechn);
         $stmt->bindParam(':telephoneTechn', $telephoneTechn);
@@ -12,6 +15,7 @@
         $stmt->bindParam(':cpteBanque', $cpteBanque);
         $stmt->bindParam(':gradeTechn', $gradeTechn);
         $stmt->bindParam(':specialiteTechn', $specialiteTechn);
+        $stmt->bindParam(':password', $password);
         
         $nomTechn = $_GET["nomTechn"];
         $prenomTechn = $_GET["prenomTechn"];
@@ -21,6 +25,7 @@
         $cpteBanque = $_GET["cpteBanque"];
         $gradeTechn = $_GET["gradeTechn"];
         $specialiteTechn = $_GET["specialiteTechn"];
+        $password = $_GET["password"];
         $stmt->execute();
 
         $result = array(

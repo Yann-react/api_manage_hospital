@@ -3,7 +3,7 @@
     header("Access-Control-Allow-Origin: *");
     header('Access-Control-Allow-Headers: Content-Type');
     try{
-        $stmt = $conn->prepare("INSERT INTO medecin (nomMed,prenomMed,telephoneMed,emailMed,cniMed,cpteBanque,gradeMed,specialiteMed) VALUES (:nomMed,:prenomMed,:telephoneMed,:emailMed,:cniMed,:cpteBanque,:gradeMed,:specialiteMed)");
+        $stmt = $conn->prepare("INSERT INTO medecin (nomMed,prenomMed,telephoneMed,emailMed,cniMed,cpteBanque,gradeMed,specialiteMed,password) VALUES (:nomMed,:prenomMed,:telephoneMed,:emailMed,:cniMed,:cpteBanque,:gradeMed,:specialiteMed,:password)");
         $stmt->bindParam(':nomMed', $nomMed);
         $stmt->bindParam(':prenomMed', $prenomMed);
         $stmt->bindParam(':telephoneMed', $telephoneMed);
@@ -12,7 +12,8 @@
         $stmt->bindParam(':cpteBanque', $cpteBanque);
         $stmt->bindParam(':gradeMed', $gradeMed);
         $stmt->bindParam(':specialiteMed', $specialiteMed);
-        
+        $stmt->bindParam(':password', $password);
+
         $nomMed = $_GET["nomMed"];
         $prenomMed = $_GET["prenomMed"];
         $telephoneMed = $_GET["telephoneMed"];
@@ -21,6 +22,7 @@
         $cpteBanque = $_GET["cpteBanque"];
         $gradeMed = $_GET["gradeMed"];
         $specialiteMed = $_GET["specialiteMed"];
+        $password = $_GET["password"];
         $stmt->execute();
 
         $result = array(
